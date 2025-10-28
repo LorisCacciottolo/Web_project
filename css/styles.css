@@ -4,7 +4,6 @@ body {
   background-color: #e9ecef;
 }
 
-/* CSS Variables */
 :root {
   --bg: #f6f6f6;
   --card: #ffffff;
@@ -21,7 +20,6 @@ body {
   line-height: 1.6;
 }
 
-/* Wrapper and Layout */
 .wrapper {
   max-width: 1400px;
   margin: 0 auto;
@@ -36,7 +34,6 @@ body {
   gap: 0;
 }
 
-/* Header Styles */
 header {
   grid-area: header;
   background: radial-gradient(1200px 600px at 70% 10%, #111827 0%, #0b0f1a 60%, #06080e 100%);
@@ -64,7 +61,6 @@ header p {
   margin-top: 10px;
 }
 
-/* Navigation */
 .main-nav {
   grid-area: nav;
   background-color: #1f2937;
@@ -97,7 +93,6 @@ header p {
   color: white;
 }
 
-/* Main Content */
 .main-content {
   grid-area: main;
   padding: 40px 20px;
@@ -116,7 +111,6 @@ header p {
   color: var(--brand);
 }
 
-/* Vue Card Styles */
 .drop-card-vue {
   background: var(--card);
   border-radius: 12px;
@@ -170,7 +164,6 @@ header p {
   display: block;
 }
 
-/* Navigation Buttons */
 .navigation-buttons {
   display: flex;
   justify-content: center;
@@ -212,7 +205,6 @@ header p {
   padding: 0 10px;
 }
 
-/* Instruction */
 .instruction {
   text-align: center;
   margin: 20px 0;
@@ -228,7 +220,6 @@ header p {
   font-size: 0.95rem;
 }
 
-/* Sidebar */
 .main-sidebar {
   grid-area: sidebar;
   background: #f9fafb;
@@ -261,7 +252,6 @@ header p {
   line-height: 1.6;
 }
 
-/* Footer */
 .footer {
   grid-area: footer;
   background: #0b0f1a;
@@ -274,7 +264,6 @@ header p {
   margin: 5px 0;
 }
 
-/* Responsive Design */
 @media (min-width: 768px) {
   .wrapper {
     grid-template-columns: 2fr 1fr;

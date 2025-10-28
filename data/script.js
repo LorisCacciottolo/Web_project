@@ -1,4 +1,3 @@
-// Data array containing fashion/sneakers drop information
 const fashionDrops = [
     {
         title: "Nike Air Max 1 'Photon Dust'",

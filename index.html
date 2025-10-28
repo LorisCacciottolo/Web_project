@@ -23,30 +23,21 @@
             </ul>
         </nav>
 
-        <!-- Vue App Section -->
         <main id="app" class="main-content">
             <div class="vue-container">
                 <h2 v-text="mainHeading"></h2>
                 
-                <!-- 
-                    Card section with toggle functionality:
-                    Click to toggle between title and description
-                -->
                 <section @click="isFlipped = !isFlipped" class="drop-card-vue">
                     <div class="card-content">
-                        <!-- Display title when not flipped, hide when flipped -->
                         <h3 v-text="isFlipped ? '' : fashionDrops[index].title"></h3>
-                        <!-- Display description when flipped, hide when not flipped -->
                         <p v-text="isFlipped ? fashionDrops[index].desc : ''"></p>
                     </div>
                     
-                    <!-- Image is always displayed -->
                     <div class="card-image">
                         <img :src="fashionDrops[index].img" :alt="fashionDrops[index].title">
                     </div>
                 </section>
 
-                <!-- Navigation Buttons -->
                 <div class="navigation-buttons">
                     <button @click="move(-1)" type="button" class="btn-nav btn-prev">
                         <span>←</span> Previous
@@ -63,7 +54,6 @@
             </div>
         </main>
 
-        <!-- Sidebar Information -->
         <aside class="main-sidebar">
             <h3>About DropWatch</h3>
             <dl>
@@ -84,44 +74,30 @@
         </footer>
     </div>
 
-    <!-- Vue.js CDN -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    
-    <!-- Data file -->
     <script src="data/script.js"></script>
     
-    <!-- Vue App -->
     <script>
         const dropWatchApp = {
             data() {
                 return {
                     mainHeading: 'Latest Fashion & Sneaker Drops',
-                    // Import the fashionDrops array from data/script.js
                     fashionDrops,
-                    // Track if card is flipped (showing description vs title)
                     isFlipped: false,
-                    // Current index in the array (starts at 0)
                     index: 0
                 }
             },
             methods: {
-                // Method to navigate through items
-                // change: 1 for next, -1 for previous
                 move(change) {
-                    // Check if the next/previous index exists in the array
                     if (this.fashionDrops[this.index + change]) {
                         this.index += change;
-                        // Reset flip state when moving to new item
                         this.isFlipped = false;
                     }
                 }
             }
         };
 
-        // Create and mount the Vue app
         const app = Vue.createApp(dropWatchApp).mount("#app");
-
-        // Update year in footer
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
