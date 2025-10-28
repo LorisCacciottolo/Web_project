@@ -4,7 +4,7 @@ A Vue.js web application to track the latest fashion and sneaker releases.
 
 ## Live Demo
 
-**[View Live Demo]: https://loriscacciottolo.github.io/Web_project/
+**[View Live Demo](https://loriscacciottolo.github.io/Web_project/)**
 
 ## Project Description
 

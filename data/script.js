@@ -30,3 +30,56 @@ const fashionDrops = [
         img: "assets/images/carroussel3.jpg"
     }
 ];
+
+const dropWatchApp = {
+    data() {
+        return {
+            mainHeading: 'Latest Fashion & Sneaker Drops',
+            fashionDrops,
+            isFlipped: false,
+            index: 0
+        }
+    },
+    methods: {
+        move(change) {
+            if (this.fashionDrops[this.index + change]) {
+                this.index += change;
+                this.isFlipped = false;
+            }
+        }
+    }
+};
+
+function initDropWatch() {
+    Vue.createApp(dropWatchApp).mount("#app");
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
+    const key = 'dw-theme';
+    const body = document.body;
+    const btn = document.getElementById('themeToggle');
+    const current = localStorage.getItem(key);
+    if (current === 'dark') {
+        body.classList.add('theme-dark');
+    }
+    function updateLabel() {
+        if (btn) {
+            btn.textContent = body.classList.contains('theme-dark') ? '🌞 Light theme' : '🌗 Dark theme';
+        }
+    }
+    updateLabel();
+    if (btn) {
+        btn.addEventListener('click', function() {
+            body.classList.toggle('theme-dark');
+            localStorage.setItem(key, body.classList.contains('theme-dark') ? 'dark' : 'light');
+            updateLabel();
+        });
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDropWatch);
+} else {
+    initDropWatch();
+}

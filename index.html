@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DropWatch — Fashion & Sneakers Drops</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -12,6 +15,7 @@
             <div class="logo">DropWatch</div>
             <h1>Fashion & Sneakers Drops</h1>
             <p>Never miss a drop — Stay updated with the latest releases</p>
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">🌗 Toggle theme</button>
         </header>
         
         <nav class="main-nav">
@@ -29,23 +33,31 @@
                 
                 <section @click="isFlipped = !isFlipped" class="drop-card-vue">
                     <div class="card-content">
-                        <h3 v-text="isFlipped ? '' : fashionDrops[index].title"></h3>
-                        <p v-text="isFlipped ? fashionDrops[index].desc : ''"></p>
+                        <transition name="fade">
+                            <h3 v-if="!isFlipped" v-text="fashionDrops[index].title"></h3>
+                        </transition>
+                        <transition name="fade">
+                            <p v-if="isFlipped" v-text="fashionDrops[index].desc"></p>
+                        </transition>
                     </div>
                     
                     <div class="card-image">
-                        <img :src="fashionDrops[index].img" :alt="fashionDrops[index].title">
+                        <img :src="fashionDrops[index].img" :alt="fashionDrops[index].title" draggable="false">
                     </div>
                 </section>
 
                 <div class="navigation-buttons">
-                    <button @click="move(-1)" type="button" class="btn-nav btn-prev">
+                    <button @click="move(-1)" :disabled="!fashionDrops[index - 1]" type="button" class="btn-nav btn-prev">
                         <span>←</span> Previous
                     </button>
                     <span class="item-counter">{{ index + 1 }} / {{ fashionDrops.length }}</span>
-                    <button @click="move(1)" type="button" class="btn-nav btn-next">
+                    <button @click="move(1)" :disabled="!fashionDrops[index + 1]" type="button" class="btn-nav btn-next">
                         Next <span>→</span>
                     </button>
+                </div>
+
+                <div class="progress" aria-hidden="true">
+                    <div class="bar" :style="{ width: ((index + 1) / fashionDrops.length * 100) + '%'}"></div>
                 </div>
 
                 <div class="instruction">
@@ -76,29 +88,5 @@
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="data/script.js"></script>
-    
-    <script>
-        const dropWatchApp = {
-            data() {
-                return {
-                    mainHeading: 'Latest Fashion & Sneaker Drops',
-                    fashionDrops,
-                    isFlipped: false,
-                    index: 0
-                }
-            },
-            methods: {
-                move(change) {
-                    if (this.fashionDrops[this.index + change]) {
-                        this.index += change;
-                        this.isFlipped = false;
-                    }
-                }
-            }
-        };
-
-        const app = Vue.createApp(dropWatchApp).mount("#app");
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>
